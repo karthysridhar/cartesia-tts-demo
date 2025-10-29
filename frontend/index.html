@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartesia Conversational Bot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    textarea {
+      width: 80%;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+    select, button {
+      padding: 8px 12px;
+      margin: 5px;
+    }
+    #status {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .chat-container {
+      width: 80%;
+      max-width: 720px;
+      margin: 20px auto;
+      text-align: left;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .messages {
+      height: 360px;
+      overflow-y: auto;
+      padding: 8px;
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    .msg { margin: 8px 0; display: flex; }
+    .msg.user { justify-content: flex-end; }
+    .bubble {
+      max-width: 70%;
+      padding: 8px 12px;
+      border-radius: 14px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+    .user .bubble { background: #1f6feb; color: white; border-bottom-right-radius: 4px; }
+    .assistant .bubble { background: #e9eef8; color: #111; border-bottom-left-radius: 4px; }
+    .composer { display: flex; gap: 8px; margin-top: 10px; }
+    .composer input { flex: 1; padding: 8px; }
+    .controls { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>🎙️ Cartesia Conversational Bot</h1>
+
+  <div class="chat-container">
+    <div class="controls">
+      <select id="voice"><option>Loading voices...</option></select>
+      <label><input type="checkbox" id="speakToggle" checked> Speak replies</label>
+    </div>
+    <div id="messages" class="messages"></div>
+    <div class="composer">
+      <input id="chatInput" type="text" placeholder="Type a message and press Enter..." />
+      <button id="send">Send</button>
+    </div>
+    <div id="status"></div>
+    <audio id="player" controls style="width:100%; margin-top:8px;"></audio>
+    <div style="margin-top:10px;">
+      <button id="generate">Generate Voice</button>
+      <button id="askAI">Ask AI & Play</button>
+      <textarea id="text" placeholder="(Legacy) Type content to speak..."></textarea>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
+
