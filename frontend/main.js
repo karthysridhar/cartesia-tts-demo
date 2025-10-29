@@ -1,3 +1,7 @@
+// 🎯 Base backend URL (Render)
+const BASE_URL = "https://cartesia-tts-demo.onrender.com";
+
+// 🎛 UI Elements
 const btn = document.getElementById('generate');
 const askAI = document.getElementById('askAI');
 const player = document.getElementById('player');
@@ -7,11 +11,9 @@ const sendBtn = document.getElementById('send');
 const chatInput = document.getElementById('chatInput');
 const speakToggle = document.getElementById('speakToggle');
 
-// ✅ Connect frontend to backend
-const BASE_URL = "https://cartesia-tts-demo.onrender.com"; // Replace with your Render URL
-
 let conversation = [];
 
+// 🧩 Render chat messages dynamically
 function renderMessages() {
   if (!messagesEl) return;
   messagesEl.innerHTML = '';
@@ -27,7 +29,7 @@ function renderMessages() {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
-// ✅ Load voices from backend
+// 🟢 Load available voices
 window.addEventListener('DOMContentLoaded', async () => {
   const voiceSelect = document.getElementById('voice');
   try {
@@ -39,7 +41,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       const opt = document.createElement('option');
       opt.value = v.id;
       opt.textContent = `${v.name || v.id} (${v.language || 'unknown'})`;
-      opt.setAttribute('data-model', v.model_id || 'sonic-multilingual-v1');
+      opt.setAttribute('data-model', v.model_id || 'sonic-2');
       voiceSelect.appendChild(opt);
     });
   } catch (err) {
@@ -48,7 +50,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-// ✅ Manual Generate
+// 🟣 Generate voice manually
 btn.addEventListener('click', async () => {
   const text = document.getElementById('text').value.trim();
   const voiceId = document.getElementById('voice').value.trim();
@@ -72,13 +74,13 @@ btn.addEventListener('click', async () => {
   }
 });
 
-// ✅ Ask AI and play voice reply
+// 🧠 Ask AI and play the response
 askAI.addEventListener('click', async () => {
   const text = document.getElementById('text').value.trim();
   const voiceSelect = document.getElementById('voice');
   const voiceId = voiceSelect.value;
   const selectedOption = voiceSelect.options[voiceSelect.selectedIndex];
-  const modelId = selectedOption.getAttribute('data-model') || 'sonic-multilingual-v1';
+  const modelId = selectedOption.getAttribute('data-model') || 'sonic-2';
 
   if (!text) return alert('Type your question');
 
@@ -113,7 +115,7 @@ askAI.addEventListener('click', async () => {
   }
 });
 
-// ✅ Conversational Chat UI
+// 💬 Conversational chat
 async function sendChat() {
   if (!chatInput) return;
   const content = chatInput.value.trim();
@@ -121,7 +123,7 @@ async function sendChat() {
   const voiceSelect = document.getElementById('voice');
   const voiceId = voiceSelect.value;
   const selectedOption = voiceSelect.options[voiceSelect.selectedIndex];
-  const modelId = selectedOption.getAttribute('data-model') || 'sonic-multilingual-v1';
+  const modelId = selectedOption.getAttribute('data-model') || 'sonic-2';
 
   conversation.push({ role: 'user', content });
   chatInput.value = '';
